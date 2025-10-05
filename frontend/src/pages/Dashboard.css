@@ -1,0 +1,276 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  font-size: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.wallet-card {
+  text-align: center;
+}
+
+.wallet-balance {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 30px 0;
+}
+
+.balance-label {
+  color: #666;
+  font-size: 14px;
+}
+
+.balance-amount {
+  color: #8bc000;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.wallet-actions {
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #a4d007 0%, #8bc000 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(139, 192, 0, 0.3);
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.transfer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card-description {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.transactions-card {
+  margin-top: 20px;
+}
+
+.transactions-list {
+  overflow-x: auto;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table th {
+  background: #f8f9fa;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.transactions-table td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.transactions-table tr:hover {
+  background: #f8f9fa;
+}
+
+.tx-type {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tx-type-deposit {
+  background: #d1f2eb;
+  color: #0c5a4a;
+}
+
+.tx-type-withdrawal {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.tx-type-transfer {
+  background: #cfe2ff;
+  color: #084298;
+}
+
+.amount-credit {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.amount-debit {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-completed {
+  background: #d1f2eb;
+  color: #0c5a4a;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-failed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.no-transactions {
+  text-align: center;
+  color: #666;
+  padding: 40px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.modal .form-group {
+  margin-bottom: 20px;
+}
+
+.modal .form-group label {
+  display: block;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.modal .form-group input,
+.modal .form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.modal .form-group input:focus,
+.modal .form-group select:focus {
+  outline: none;
+  border-color: #8bc000;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.modal-actions button {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .transactions-table {
+    font-size: 12px;
+  }
+
+  .balance-amount {
+    font-size: 36px;
+  }
+
+  .modal {
+    padding: 20px;
+  }
+}
