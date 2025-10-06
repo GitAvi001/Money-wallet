@@ -19,9 +19,9 @@ This application is built using a **microservices architecture** with separate s
 - **Styling:** Tailwind CSS
 
 ### **Architecture**
-```bash
-#Port numbers can configured as per the requirements
-```
+
+Port numbers can configured as per the requirements
+
 - **API Gateway** (Port 8080) - Unified entrypoint for routeing requests to appropriate services
 - **Auth Service** (Port 8081) - User authentication and authorization
 - **Transaction Service** (Port 8082) - Wallet and transaction management
