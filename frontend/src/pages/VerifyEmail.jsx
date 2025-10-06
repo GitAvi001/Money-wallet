@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom' //useNavigate hook for navigation, useSearchParams hook for search parameters in the url
 import axios from 'axios'
 import './Auth.css'
 

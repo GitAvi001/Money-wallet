@@ -13,24 +13,24 @@ export default function Dashboard() {
   const [success, setSuccess] = useState('')
   
   // Transfer form
-  const [showTransferModal, setShowTransferModal] = useState(false)
-  const [transferData, setTransferData] = useState({
+  const [showTransferModal, setShowTransferModal] = useState(false) //hook for transfer modal
+  const [transferData, setTransferData] = useState({ //hook for transfer data
     receiver_id: '',
     amount: '',
     description: ''
   })
 
   // Add funds form
-  const [showAddFundsModal, setShowAddFundsModal] = useState(false)
-  const [addAmount, setAddAmount] = useState('')
+  const [showAddFundsModal, setShowAddFundsModal] = useState(false) //hook for add funds modal
+  const [addAmount, setAddAmount] = useState('') //hook for add funds amount
 
   useEffect(() => {
-    fetchWallet()
-    fetchUsers()
-    fetchTransactions()
+    fetchWallet() //useEffect hook for fetching wallet
+    fetchUsers() //useEffect hook for fetching users
+    fetchTransactions() //useEffect hook for fetching transactions
   }, [])
 
-  const fetchWallet = async () => {
+  const fetchWallet = async () => { //async function used to fetch wallet
     try {
       console.log('Fetching wallet...')
       const response = await axios.get('/api/wallet')
@@ -43,7 +43,7 @@ export default function Dashboard() {
     }
   }
 
-  const fetchUsers = async () => {
+  const fetchUsers = async () => { //async function used to fetch users
     try {
       const response = await axios.get('/api/auth/users')
       setUsers(response.data.filter(u => u.id !== user.id))
@@ -52,7 +52,7 @@ export default function Dashboard() {
     }
   }
 
-  const fetchTransactions = async () => {
+  const fetchTransactions = async () => { //async function used to fetch transactions
     try {
       console.log('Fetching transactions...')
       const response = await axios.get('/api/transactions')
@@ -63,12 +63,12 @@ export default function Dashboard() {
     }
   }
 
-  const handleTransfer = async (e) => {
+  const handleTransfer = async (e) => { //async function used to handle transfer
     e.preventDefault()
     setError('')
     setSuccess('')
 
-    // Validate amount
+    // Validate amount check if the amount to transfer is les than current balance and greater than 0
     const amount = parseFloat(transferData.amount)
     if (isNaN(amount) || amount <= 0) {
       setError('Please enter a valid amount')
@@ -118,7 +118,8 @@ export default function Dashboard() {
       setError('Please enter a valid amount greater than 0')
       return
     }
-
+  
+    //sets maximum amount per transaction to $100,000
     if (amount > 100000) {
       setError('Maximum amount per transaction is $100,000')
       return
@@ -149,6 +150,12 @@ export default function Dashboard() {
   const getReceiverName = (receiverId) => {
     const receiver = users.find(u => u.id === receiverId)
     return receiver ? receiver.name : `User #${receiverId}`
+  }
+
+  //function to get sender name to add in description if no description is provided
+  const getSenderName = (senderId) => {
+    const sender = users.find(u => u.id === senderId)
+    return sender ? sender.name : `User #${senderId}`
   }
 
   if (loading) {
@@ -221,7 +228,9 @@ export default function Dashboard() {
                       {tx.transaction_type === 'transfer' && tx.sender_id === user.id
                         ? `To ${getReceiverName(tx.receiver_id)}`
                         : tx.transaction_type === 'transfer' && tx.receiver_id === user.id
-                        ? `From User #${tx.sender_id}`
+                        ? (tx.description && tx.description.trim() !== '' 
+                           ? tx.description 
+                           : `From ${getSenderName(tx.sender_id)}`)
                         : tx.description}
                     </td>
                     <td className={tx.sender_id === user.id && tx.transaction_type === 'transfer' ? 'amount-debit' : 'amount-credit'}>

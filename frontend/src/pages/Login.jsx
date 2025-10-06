@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/AuthContext' //hook for authentication
 import './Auth.css'
 
 export default function Login() {
@@ -11,12 +11,14 @@ export default function Login() {
     password: '',
     retypePassword: ''
   })
-  const [rememberMe, setRememberMe] = useState(false)
+/*If user checks remember me, login credentials saved by token within 24 hours it will store in the local storgae when checked*/
+/*If user closes browser without checking remeber me, it will not store in the local storage*/
+  const [rememberMe, setRememberMe] = useState(false) 
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
   
-  const { login, register } = useAuth()
+  const { login, register } = useAuth() //login and register functions from AuthContext
   const navigate = useNavigate()
 
   const handleChange = (e) => {
@@ -28,7 +30,7 @@ export default function Login() {
   }
 
   const handleLoginSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault() //prevents default form submission need to enter all details
     setError('')
     setLoading(true)
 
@@ -54,6 +56,7 @@ export default function Login() {
       return
     }
 
+    //Validates for password at least 6 characters
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters')
       setLoading(false)

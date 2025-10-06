@@ -26,7 +26,7 @@ function App() {
             path="/login" 
             element={
               <PublicRoute>
-                <Login />
+                <Login /> {/*Login component*/}
               </PublicRoute>
             } 
           />
@@ -34,7 +34,7 @@ function App() {
             path="/register" 
             element={
               <PublicRoute>
-                <Register />
+                <Register /> {/*Register component*/}
               </PublicRoute>
             } 
           />
@@ -43,7 +43,7 @@ function App() {
             path="/dashboard" 
             element={
               <PrivateRoute>
-                <Dashboard />
+                <Dashboard /> {/*Dashboard component*/}
               </PrivateRoute>
             } 
           />
